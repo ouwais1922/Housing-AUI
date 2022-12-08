@@ -29,6 +29,21 @@ export const createFacility = async (req,res,next)=>{
             next(err);
         }
 }
+export const editFacility = async (req,res,next)=>{
+    const facilityId = req.params.id
+    try{
+
+        const newUpdatedFacility = await Facility.findByIdAndUpdate(facilityId,
+            {
+                $set:req.body
+            }
+            ,{new:true}
+            )
+            res.status(200).json(newUpdatedFacility)
+    }catch(err){
+        next(err);
+    }
+}
 export const deleteFacilityById = async (req,res,next)=>{
     const faiciltyId = req.params.id;
     try{
