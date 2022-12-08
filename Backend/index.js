@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
+import facilityRouter from "./api/routes/facilities.js"
 
 const app = express();
 // dotenv allows to read variables from the ".env" file
@@ -36,9 +36,24 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json());
 
+app.use('/api/facilities',facilityRouter)
+
+
+
+// next middleware:
+app.use((err,req,res,next)=>{
+        const errStatus = err.status || 500;
+        const errMessage = err.message || "Something is going wrong!!";
+        return res.status(errStatus).json({
+            success : false,
+            status: errStatus,
+            message: errMessage,
+            stack: err.stack
+        })
+})
 
 
 app.listen(process.env.PORT,()=>{
-    connect()
+    connect(); 
     console.log("The server is connected to port: 5000 ....");
 })
