@@ -29,3 +29,12 @@ export const createFacility = async (req,res,next)=>{
             next(err);
         }
 }
+export const deleteFacilityById = async (req,res,next)=>{
+    const faiciltyId = req.params.id;
+    try{
+        const deleteFacilityById = await Facility.findByIdAndDelete(faiciltyId);
+        res.status(200).json("Facilty has been deleted successfully!")
+    }catch(err){
+        next(err);
+    }
+}
