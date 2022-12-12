@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import facilityRouter from "./api/routes/facilities.js"
 import buildingRouter from "./api/routes/buildings.js"
+import roomRouter from "./api/routes/rooms.js"
 
 const app = express();
 // dotenv allows to read variables from the ".env" file
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 
 app.use('/api/facilities',facilityRouter)
 app.use('/api/buildings',buildingRouter)
+app.use('/api/rooms',roomRouter)
 
 
 
