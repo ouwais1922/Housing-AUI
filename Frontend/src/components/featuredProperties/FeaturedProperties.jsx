@@ -1,8 +1,8 @@
 import "./featuredProperties.css";
-import Ra_1 from "../../Ra Images/282573183_1448410478947047_5918019139437515482_n.jpg"
-import Ra_2 from "../../Ra Images/276220823_4885430671552464_4338294145903081726_n.jpg"
-import Ra_3 from "../../Ra Images/318111492_3022825464676656_349394368157766881_n.jpg"
-import Ra_4 from "../../Ra Images/312093583_1989694124563014_5921161818930669127_n.jpg"
+import Ra_1 from "../../images/Ra Images/Noor.jpg"
+import Ra_2 from "../../images/Ra Images/Younes.jpg"
+import Ra_3 from "../../images/Ra Images/Ayoub.jpg"
+import Ra_4 from "../../images/Ra Images/Amine.jpg"
 
 const FeaturedProperties = () => {
   return (
