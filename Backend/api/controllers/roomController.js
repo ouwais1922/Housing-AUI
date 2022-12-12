@@ -1,14 +1,16 @@
 import Room from "../../modules/Room.js"
 import Building from "../../modules/Building.js"
 
-export const getAllRooms = async (req,res,next)=>{
-        try{
-            const allRooms = await Room.find();
-            res.status(200).json(allRooms);
-        }catch(err){
-            next(err);
-        }
-}
+
+export const getAllRooms = async (req, res, next) => {
+    const {min,max, ...others} = req.query
+    try {
+      const allRooms = await Room.find()
+      res.status(200).json(allRooms);
+    } catch (err) {
+      next(err);
+    }
+  };
 
 export const getRoomById = async (req,res,next)=>{
     const roomId = req.params.id;
@@ -49,6 +51,7 @@ export const editRoom = async (req,res,next)=>{
         next(err);
     }
 }
+
 export const deleteRoom = async (req,res,next)=>{
 
     const roomId = req.params.id;
@@ -60,3 +63,27 @@ export const deleteRoom = async (req,res,next)=>{
     }
 
 }
+export const countRoomByType = async (req,res,next)=>{
+
+    try{    
+
+        const singleRoom = await Room.countDocuments({type:"single"});
+        const doubleRoom = await Room.countDocuments({type:"double"});
+        const tripleRoom = await Room.countDocuments({type:"triple"});
+        const studioRoom = await Room.countDocuments({type:"studio"});
+        const appartmentRoom = await Room.countDocuments({type:"appartment"});
+        console.log(singleRoom);
+        res.status(200).json([
+            {type:"single",count:singleRoom},
+            {type:"double",count:doubleRoom},
+            {type:"triple",count:tripleRoom},
+            {type:"studio",count:studioRoom},
+            {type:"appartment",count:appartmentRoom},
+        ])
+
+    }catch(err){
+        next(err);
+    }
+
+}
+

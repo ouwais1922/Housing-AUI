@@ -18,6 +18,10 @@ const roomShema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    // required: true,
+  },
   roomNumbers : [{number: Number,unavailableDates:{type:[Date]}}],
 },{timestamps:true});
 export default mongoose.model("Room", roomShema);
