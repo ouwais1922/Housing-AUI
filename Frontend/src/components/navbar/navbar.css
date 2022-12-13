@@ -1,6 +1,6 @@
 .navbar{
   height: 50px;
-  background-color: #086425;
+  background-color: #175634;
   display: flex;
   justify-content: center;
 }
@@ -14,15 +14,21 @@
   justify-content: space-between;
 }
 
-.logo{
-  font-weight: 500;
-  color: white
+.Logo_aui{
+  width: 75%;
+  margin-top: 5%;
 }
 
 .navButton{
   margin-left: 20px;
+  border-radius: 20px;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  color: #086425;
+  color: #175634;
+  width: 150%;
+}
+.navButton:hover{
+  background-color: #228c22;
+  color: white;
 }

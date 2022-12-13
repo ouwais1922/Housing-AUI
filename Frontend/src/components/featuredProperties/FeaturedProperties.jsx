@@ -20,8 +20,8 @@ const FeaturedProperties = () => {
         <span className="fpCity">Building 39</span>
         <span className="fpPrice">S.aloaui@aui.ma</span>
         <div className="fpRating">
-          <button>major</button>
-          <span>international studies</span>
+          <button>Major</button>
+          <span>International studies</span>
         </div>
       </div>
       <div className="fpItem">
@@ -34,7 +34,7 @@ const FeaturedProperties = () => {
         <span className="fpCity">Building 38</span>
         <span className="fpPrice">N.alaoui@aui.ma</span>
         <div className="fpRating">
-          <button>major</button>
+          <button>Major</button>
           <span>Compuser science</span>
         </div>
       </div>
@@ -48,8 +48,8 @@ const FeaturedProperties = () => {
         <span className="fpCity">Building 36</span>
         <span className="fpPrice">A.alaoui@aui.ma</span>
         <div className="fpRating">
-          <button>major</button>
-          <span>Compuser science</span>
+          <button>Major</button>
+          <span>Computer science</span>
         </div>
       </div>
       <div className="fpItem">
@@ -62,8 +62,8 @@ const FeaturedProperties = () => {
         <span className="fpCity">Building 21</span>
         <span className="fpPrice">S.lamchoudi@aui.ma</span>
         <div className="fpRating">
-          <button>major</button>
-          <span>Bid data</span>
+          <button>Major</button>
+          <span>Big data</span>
         </div>
       </div>
     </div>
