@@ -7,7 +7,8 @@ import cors from "cors";
 import facilityRouter from "./api/routes/facilities.js"
 import buildingRouter from "./api/routes/buildings.js"
 import roomRouter from "./api/routes/rooms.js"
-
+import authRoute from "./api/routes/auth.js"
+import userRouter from "./api/routes/users.js"
 const app = express();
 // dotenv allows to read variables from the ".env" file
 dotenv.config();
@@ -38,6 +39,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json());
 
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRouter);
 app.use('/api/facilities',facilityRouter)
 app.use('/api/buildings',buildingRouter)
 app.use('/api/rooms',roomRouter)

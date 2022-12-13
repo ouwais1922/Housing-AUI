@@ -25,10 +25,10 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  color: #175634;
+  color: #0071c2;
   width: 150%;
 }
 .navButton:hover{
-  background-color: #228c22;
+  background-color: #0071c2;
   color: white;
 }
