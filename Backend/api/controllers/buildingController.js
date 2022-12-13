@@ -2,6 +2,7 @@ import Building from "../../modules/Building.js"
 import Facility from "../../modules/Facility.js"
 
 export const getAllBuildings = async (req,res,next)=>{
+
     try{
         const allBuildings = await Building.find();
         res.status(200).json(allBuildings);

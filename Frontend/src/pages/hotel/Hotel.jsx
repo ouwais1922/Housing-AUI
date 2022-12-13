@@ -11,11 +11,19 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+
+
 
 const Hotel = () => {
+  const location = useLocation();
+  const id = location.pathname.split('/');
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-
+  const URL =  `http://127.0.0.1:5000/api/buildings/find/${id[2]}`
+  const {data,error,loading} = useFetch(URL);
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -42,6 +50,16 @@ const Hotel = () => {
     setOpen(true);
   };
 
+  // const {date} = useContext(SearchContext)
+  // const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  // function dayDifference(date1, date2) {
+  //   const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+  //   const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+  //   return diffDays;
+  // }
+
+  // const days = dayDifference(date[0].endDate, date[0].startDate);
+
   const handleMove = (direction) => {
     let newSlideNumber;
 
@@ -58,87 +76,83 @@ const Hotel = () => {
     <div>
       <Navbar />
       <Header type="list" />
-      <div className="hotelContainer">
-        {open && (
-          <div className="slider">
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="close"
-              onClick={() => setOpen(false)}
-            />
-            <FontAwesomeIcon
-              icon={faCircleArrowLeft}
-              className="arrow"
-              onClick={() => handleMove("l")}
-            />
-            <div className="sliderWrapper">
-              <img src={photos[slideNumber].src} alt="" className="sliderImg" />
-            </div>
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              className="arrow"
-              onClick={() => handleMove("r")}
-            />
-          </div>
-        )}
-        <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">Tower Street Apartments</h1>
-          <div className="hotelAddress">
-            <FontAwesomeIcon icon={faLocationDot} />
-            <span>Elton St 125 New york</span>
-          </div>
-          <span className="hotelDistance">
-            Excellent location – 500m from center
-          </span>
-          <span className="hotelPriceHighlight">
-            Book a stay over $114 at this property and get a free airport taxi
-          </span>
-          <div className="hotelImages">
-            {photos.map((photo, i) => (
-              <div className="hotelImgWrapper" key={i}>
-                <img
-                  onClick={() => handleOpen(i)}
-                  src={photo.src}
-                  alt=""
-                  className="hotelImg"
+      {
+        loading ? "is loading" :(
+          <>
+          <div className="hotelContainer">
+            {open && (
+              <div className="slider">
+                <FontAwesomeIcon
+                  icon={faCircleXmark}
+                  className="close"
+                  onClick={() => setOpen(false)}
+                />
+                <FontAwesomeIcon
+                  icon={faCircleArrowLeft}
+                  className="arrow"
+                  onClick={() => handleMove("l")}
+                />
+                <div className="sliderWrapper">
+                  <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+                </div>
+                <FontAwesomeIcon
+                  icon={faCircleArrowRight}
+                  className="arrow"
+                  onClick={() => handleMove("r")}
                 />
               </div>
-            ))}
-          </div>
-          <div className="hotelDetails">
-            <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">Stay in the heart of City</h1>
-              <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
-                Street Apartments has accommodations with air conditioning and
-                free WiFi. The units come with hardwood floors and feature a
-                fully equipped kitchenette with a microwave, a flat-screen TV,
-                and a private bathroom with shower and a hairdryer. A fridge is
-                also offered, as well as an electric tea pot and a coffee
-                machine. Popular points of interest near the apartment include
-                Cloth Hall, Main Market Square and Town Hall Tower. The nearest
-                airport is John Paul II International Kraków–Balice, 16.1 km
-                from Tower Street Apartments, and the property offers a paid
-                airport shuttle service.
-              </p>
-            </div>
-            <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
-              <span>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
+            )}
+            <div className="hotelWrapper">
+              <button className="bookNow">Reserve or Book Now!</button>
+              <h1 className="hotelTitle">Building {data.name}</h1>
+              <div className="hotelAddress">
+                <FontAwesomeIcon icon={faLocationDot} />
+                <span>{data.description}</span>
+              </div>
+              <span className="hotelDistance">
+                Excellent location – {data.name}
               </span>
-              <h2>
-                <b>$945</b> (9 nights)
-              </h2>
-              <button>Reserve or Book Now!</button>
+              <span className="hotelPriceHighlight">
+                Book a stay of an average price 5000dh to 1000dh
+              </span>
+              <div className="hotelImages">
+                {photos.map((photo, i) => (
+                  <div className="hotelImgWrapper" key={i}>
+                    <img
+                      onClick={() => handleOpen(i)}
+                      src={photo.src}
+                      alt=""
+                      className="hotelImg"
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="hotelDetails">
+                <div className="hotelDetailsTexts">
+                  <h1 className="hotelTitle">Stay in the heart of Campus</h1>
+                  <p className="hotelDesc">
+                   {data.description}
+                  </p>
+                </div>
+                <div className="hotelDetailsPrice">
+                  <h1>Perfect for a semester to stay!</h1>
+                  <span>
+                    {data.description} - good place to reside
+                  </span>
+                  <h2>
+                    {/* <b>$945</b> {days} days */}
+                  </h2>
+                  <button>Reserve or Book Now!</button>
+                </div>
+              </div>
             </div>
+            <MailList />
+            <Footer />
           </div>
-        </div>
-        <MailList />
-        <Footer />
-      </div>
+
+          </>
+        )
+      }
     </div>
   );
 };

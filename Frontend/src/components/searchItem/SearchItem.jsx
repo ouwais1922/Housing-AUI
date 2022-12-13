@@ -1,4 +1,6 @@
 import "./searchItem.css";
+import { Link } from "react-router-dom";
+
 
 const SearchItem = ({item}) => {
   return (
@@ -9,17 +11,14 @@ const SearchItem = ({item}) => {
         className="siImg"
       />
       <div className="siDesc">
-        <h1 className="siTitle">{item.name}</h1>
-        <span className="siTaxiOp">Free airport taxi</span>
+        <h1 className="siTitle">Building {item.name}</h1>
+        <span className="siTaxiOp">{item.description}</span>
         <span className="siSubtitle">
-          Studio Apartment with Air conditioning
-        </span>
-        <span className="siFeatures">
-          Entire studio • 1 bathroom • 21m² 1 full bed
+          Single, double, triple, and studios are provided
         </span>
         <span className="siCancelOp">Free cancellation </span>
         <span className="siCancelOpSubtitle">
-          You can cancel later, so lock in this great price today!
+          First come, first serve
         </span>
       </div>
       <div className="siDetails">
@@ -28,9 +27,10 @@ const SearchItem = ({item}) => {
           <button>8.9</button>
         </div>
         <div className="siDetailTexts">
-          <span className="siPrice">$112</span>
-          <span className="siTaxOp">Includes taxes and fees</span>
+          <span className="siPrice">50 rooms</span>
+          <Link to={`/buildings/${item._id}`}>
           <button className="siCheckButton">See availability</button>
+          </Link>
         </div>
       </div>
     </div>
