@@ -53,3 +53,6 @@ export const deleteFacilityById = async (req,res,next)=>{
         next(err);
     }
 }
+export const dataExtraction = async (req,res,next)=>{
+    
+}
