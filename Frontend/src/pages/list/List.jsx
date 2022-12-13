@@ -7,6 +7,8 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import GridLoader from "react-spinners/GridLoader";
+
 
 
 const List = () => {
@@ -62,7 +64,9 @@ const List = () => {
           </div>
           <div className="listResult">
           {
-              loading ? "Is loading" : (
+              loading ? (<div className="spinner-logo">
+              <GridLoader color={"#086425"} size={20} />
+            </div>) : (
                 <>
                   {
                     data.map((item)=>(
